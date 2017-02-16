@@ -3,8 +3,9 @@ var app = express();
 
 // ROOT ROUTE
 app.get("/", function(req, res){
-  var ip = req.ip;
-  // var ip = req.connection.remoteAddress;
+  // var ip = req.ip; // express property; doesn't show expected IP Address
+  // var ip = req.connection.remoteAddress; // express default setting for false 'trust proxy'
+  var ip = req.headers['x-forwarded-for'];
 
   var language = req.headers['accept-language'].split(',')[0];
   // var language = req.acceptsLanguages()[0];
