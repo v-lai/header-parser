@@ -15,6 +15,17 @@ app.get("/", function(req, res){
   res.send(JSON.stringify({ ipaddress: ip, language: language, software: software }, null, '\t'));
 });
 
+// api/whoami [fcc-beta]
+app.get("/api/whoami", function(req, res){
+  var ip = req.headers['x-forwarded-for'];
+
+  var language = req.headers['accept-language'];
+
+  var software = req.headers['user-agent'];
+
+  res.send(JSON.stringify({ ipaddress: ip, language: language, software: software }, null, '\t'));
+});
+
 // ANY OTHER ROUTE
 app.get("*", function(req, res){
   res.send("Page not found.");
